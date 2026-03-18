@@ -16,7 +16,7 @@ class DieFragment : Fragment() {
 
     lateinit var dieTextView: TextView
 
-    var currentRoll = 1
+    var currentRoll = 0
 
     var dieSides: Int = 6
 
