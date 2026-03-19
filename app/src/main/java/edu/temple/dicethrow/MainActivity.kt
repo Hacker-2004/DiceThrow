@@ -16,11 +16,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         dieViewModel = ViewModelProvider(this)[DieViewModel::class.java]
 
+        dieViewModel.setThrowDie(20)
+
         if(supportFragmentManager.findFragmentById(R.id.fragmentContainerView) == null) {
-            supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, DieFragment.newInstance(20))
+            supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, DieFragment())
                 .commit()
         }
 
