@@ -6,11 +6,18 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 
 class MainActivity : AppCompatActivity() {
+
+    lateinit var  dieViewModel: DieViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+        dieViewModel = ViewModelProvider(this)[DieViewModel::class.java]
 
         if(supportFragmentManager.findFragmentById(R.id.fragmentContainerView) == null) {
             supportFragmentManager.beginTransaction().add(R.id.fragmentContainerView, DieFragment.newInstance(20))
@@ -18,9 +25,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         findViewById<Button>(R.id.rollDiceButton).setOnClickListener {
-            supportFragmentManager.findFragmentById(R.id.fragmentContainerView)?.run {
-                (this as DieFragment).throwDie()
-            }
+            dieViewModel.throwDie()
         }
     }
 }
